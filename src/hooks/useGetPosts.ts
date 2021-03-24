@@ -1,21 +1,16 @@
 import { gql, useQuery } from '@apollo/client'
 
 const GET_POSTS = gql`
-  query GetPosts($options: PageQueryOptions!) {
-    posts(options: $options) {
-      data {
-        id
-        title
-        body
-      }
+  query GetAllUsers {
+    getAllUsers {
+      firstName
+      lastName
     }
   }
 `
 
 export const useGetPosts = () => {
-  const { data } = useQuery(GET_POSTS, {
-    variables: { options: { paginate: { page: 1, limit: 10 } } },
-  })
+  const { data } = useQuery(GET_POSTS)
 
-  return data?.posts?.data
+  return data
 }
